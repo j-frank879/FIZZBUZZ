@@ -1,0 +1,24 @@
+﻿@page
+@model FIZZBUZZ.Pages.DaneModel
+@{
+}
+<p>Dane w zapisane w sesji</p>
+@if (Model.Dane != null) 
+
+{<p>
+        @Html.DisplayNameFor(model => Model.Dane.Komunikat):
+@Model.Dane.Komunikat
+</p>
+<p>
+    @Html.DisplayNameFor(model => Model.Dane.Date):
+@Model.Dane.Date
+</p>
+<p>
+    @Html.DisplayNameFor(model => Model.Dane.Liczba):
+    @Model.Dane.Liczba
+</p>
+<br/>
+<br/>
+    
+
+}

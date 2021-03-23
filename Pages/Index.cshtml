@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <p />Podaj liczbe z przedzialu 1-1000</p>
+    <div class="text-center">
+        
+
+        <form method="post">
+
+            <input asp-for="Dane.Liczba" /><br />
+            <span asp-validation-for="Dane.Liczba" class="text-danger"></span>
+            <br />
+            <br />
+           
+
+            <button type="submit">Zatwierdź</button>
+
+
+        </form>
+
+    </div>
+    </div>
