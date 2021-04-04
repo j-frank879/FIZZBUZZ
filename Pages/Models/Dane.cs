@@ -4,20 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FIZZBUZZ.Pages.Forms
 {
     
     public class Dane
-    {[BindProperty]  
-        
+    {
+        public int Id { get; set; }
+        [BindProperty]  
        [Range(1, 1000, ErrorMessage = "Podaj liczbe z zakresu od 1 do 1000"),
             Required(ErrorMessage ="Wpisz liczbe"),
        ]
         public int Liczba { get; set; }
         [BindProperty(SupportsGet = true)]
+        [MaxLength(35)]
         public string Komunikat { get; set; }
-        
+        [Column(TypeName="datetime")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime Date { get; set; }
 
         public void fizzbuzz()
@@ -33,9 +37,10 @@ namespace FIZZBUZZ.Pages.Forms
             }
             if(Komunikat.Equals(""))
             {
-                Komunikat = "Liczba:"+Liczba+"  nie spełnia kryteriów Fizz / Buzz";
+                Komunikat = "Liczba:"+Liczba+" nie spełnia kryteriów ";
 
             }
+            
         }
     }
 }

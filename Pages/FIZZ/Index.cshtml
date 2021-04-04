@@ -1,0 +1,54 @@
+﻿@page
+@model FIZZBUZZ.Pages.FIZZ.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="/Index">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].Liczba)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].Komunikat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dane[0].Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @while (true)
+        {int i = 0;
+        @foreach (var item in Model.Dane)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Liczba)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Komunikat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+            i++;
+            @if (i == 10)
+            { break; }
+        }
+            break;
+        }
+    </tbody>
+</table>
