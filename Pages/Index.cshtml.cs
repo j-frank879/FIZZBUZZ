@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using FIZZBUZZ.Data;
+using System.Security.Claims;
 
 namespace FIZZBUZZ.Pages
 {
@@ -21,7 +22,7 @@ namespace FIZZBUZZ.Pages
         public Dane Dane { get; set; }
 
 
-        
+
 
         public IndexModel(ILogger<IndexModel> logger, FizzContext context)
         {
@@ -35,14 +36,18 @@ namespace FIZZBUZZ.Pages
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            
-                if (ModelState.IsValid)
-                {Dane.Date= DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                Dane.Date = DateTime.Now;
                 Dane.fizzbuzz();
-                HttpContext.Session.SetString("Sesja",JsonConvert.SerializeObject(Dane));
-                
+                Dane.Name_User = User.FindFirstValue(ClaimTypes.Name);
+                if (Dane.Name_User == null)
+                { Dane.Name_User = "anonim"; }
+                HttpContext.Session.SetString("Sesja", JsonConvert.SerializeObject(Dane));
+
                 _context.Dane.Add(Dane);
-                 await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
                 return RedirectToPage("./Dane");
 
@@ -52,11 +57,11 @@ namespace FIZZBUZZ.Pages
 
 
 
-           
-        }
-       
 
         }
+
+
+    }
 }
 
 

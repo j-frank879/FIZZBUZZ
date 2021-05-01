@@ -6,14 +6,7 @@ a.navbar-brand {
   text-align: center;
   word-break: break-all;
 }
-.field-validation-error {
-    color: red;
-    font-weight: bold;
-}
-input.input-validation-error {
-    color: red;
-    font-weight: bold;
-}
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
